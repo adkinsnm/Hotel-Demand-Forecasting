@@ -145,7 +145,7 @@ TimeGPT won most hotels across both RMSE and MAE.
 
 Final Selected Model: `TimeGPT`
 
-🔮 Final 28-Day Forecast
+**Final 28-Day Forecast**
 
 
 timegpt_forecast = nixtla_client.forecast(
@@ -171,7 +171,7 @@ For each of the 17 hotels, the following were plotted:
 
 
 
-💾 Saved Outputs
+**Saved Outputs**
 
 The following files were exported as CSV:
 
@@ -183,15 +183,15 @@ final_testing_output.csv
 
 **What I Learned:**
 
-✔ How to design a full forecasting pipeline
+* How to design a full forecasting pipeline
 
 From data prep → cross-validation → model comparison → final evaluation.
 
-✔ The importance of time-series cross-validation
+* The importance of time-series cross-validation
 
 Unlike normal CV, it respects temporal order and avoids leakage.
 
-✔ How statistical, ML, DL, and AI foundation models differ
+* How statistical, ML, DL, and AI foundation models differ
 
 Naive/SeasonalNaive: yes
 
