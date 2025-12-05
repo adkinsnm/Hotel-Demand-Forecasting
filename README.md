@@ -1,11 +1,11 @@
-**Hotel Demand Forecasting — ISA 444 Final Project**
+# **Hotel Demand Forecasting — ISA 444 Final Project**
 
 *Forecasting daily demand for 17 hotel properties using classical, machine learning, deep learning, and foundation models.*
 
 This project implements a complete end-to-end forecasting workflow using many of the models and techniques we learned throughout the year in ISA444.
 The goal is to forecast 28 days of hotel demand using multiple forecasting families and compare their performance.
 
-**Project Overview**
+## **Project Overview**
 
 This repository contains the full workflow used to:
 
@@ -23,13 +23,13 @@ This repository contains the full workflow used to:
 
 * Save evaluation results and final predictions to CSV files
 
-**Dataset**
+## **Dataset**
 
-Source: sample_hotels.parquet
+Source: sample_hotels.parquet (not included due to agreement with partnering company)
 
 Structure:
 
-* unique_id — hotel property ID
+* `unique_id` — hotel property ID
 
 * ds — timestamp (daily)
 
