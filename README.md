@@ -155,13 +155,13 @@ Final Selected Model: `TimeGPT`
 **Final 28-Day Forecast**
 
 
-timegpt_forecast = nixtla_client.forecast(
+`timegpt_forecast = nixtla_client.forecast(
     df=train_clean,
     h=28,
     freq="D",
     time_col="ds",
     target_col="y"
-)
+)`
 
 
 Forecasts were then merged with actual test values to compute final RMSE/MAE on the holdout period.
@@ -170,11 +170,13 @@ Forecasts were then merged with actual test values to compute final RMSE/MAE on 
 
 For each of the 17 hotels, the following were plotted:
 
+![Hotel Demand](C:/User/Nate Adkins/Pictures/Screenshots/hotel_forecasting_image.png)
+
 * Historical demand
 
 * Forecasted demand
 
-* Separate lines for each model (Naive, ETS, ARIMA, ML, TimeGPT)
+* Separate plots for each model (Naive, ETS, ARIMA, ML, TimeGPT)
 
 
 
