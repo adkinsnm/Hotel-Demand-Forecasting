@@ -170,7 +170,7 @@ Forecasts were then merged with actual test values to compute final RMSE/MAE on 
 
 For each of the 17 hotels, the following were plotted:
 
-![Hotel Demand](C:/User/Nate Adkins/Pictures/Screenshots/hotel_forecasting_image.png)
+![Hotel Demand](hotel_forecasting_image.png)
 
 * Historical demand
 
