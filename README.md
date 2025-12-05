@@ -31,18 +31,18 @@ Structure:
 
 * `unique_id` — hotel property ID
 
-* ds — timestamp (daily)
+* `ds` — timestamp (daily)
 
-* y — observed demand
+* `y` — observed demand
 
 
 **Data Preparation**
 
 *Renamed columns into standard forecasting format:*
 
-* Property → unique_id  
-* Date     → ds  
-* Demand   → y
+* Property → `unique_id`  
+* Date     → `ds`  
+* Demand   → `y`
 
 *Convert*
 
@@ -58,49 +58,48 @@ Structure:
 
 *Removed problematic hotel*
 
-* Hotel_77 had long a long period of zero demand.
+* `Hotel_77` had long a long period of zero demand.
 It was excluded because it was breaking TimeGPT and would degrade the model accuracy.
 
 *Train/test split*
 
-* Train: before 2023-06-01
+* `Train`: before 2023-06-01
 
-* Test: on/after 2023-06-01
+* `Test`: on/after 2023-06-01
 
 **Cross-Validation Strategy**
 
 All models used 5-fold non-overlapping time-series cross-validation:
 
-* Horizon: 28 days
+* `Horizon`: 28 days
 
-* Step size: 28 days
+* `Step size`: 28 days
 
-* Windows: 5
+* `Windows`: 5
 
-* Evaluated separately per hotel (unique_id)
+* Evaluated separately per hotel (`unique_id`)
 
-Models Implemented
-1. Baseline Statistical Models (StatsForecast)
+## Models Implemented
+### 1. Baseline Statistical Models (StatsForecast)
 
-* Naive
+* `Naive`
 
-* Seasonal Naive
+This model is great for creating a baseline in forecasting. The forecast for all future periods is equal to the last observed value. Any other model should outperform the Naive model to be considered useful. It's downsides are that it doens't take any seasonality or trends into account.
 
-* AutoETS
+* `Seasonal Naive`
 
-* AutoARIMA
+This is a very similar model to the `Naive` Model, but the difference is that it takes values from the last season (weekly) rather than just the last observed value. The fact that it captures seasonality and the patterns caused by it would make it slightly more accurate than the classic `Naive`, but it is still considered to be a baseline model for other models to beat.
 
-Each model was trained using:
+* `AutoETS`
 
-StatsForecast(...).cross_validation(...)
+This is an exponential smoothing model that automatically selects the components it needs. ETS models are great for series with trends & seasonality and are very popular in forecasting in general. Overall, it's considered to be a relatively accurate model.
+* `AutoARIMA`
 
+Automatically fits an ARIMA(p,d,q) model using statistical patterns in autocorrelation to model the future. This is one of the more popular models that was used in this project and also ended up being one of the most accurate. It handles trends and autocorrelation very well, making it a common use for those looking to forecast future values. 
 
-Evaluated on RMSE and MAE.
+### 2. Machine Learning Model (MLForecast)
 
-
-2. Machine Learning Model (MLForecast)
-
-Model Implemented: LightGBM Regressor
+Model Implemented: `LightGBM Regressor`
 
 * Lag features: 1, 7, 14, 28
 
@@ -112,7 +111,9 @@ Model Implemented: LightGBM Regressor
 
 * These models operate on a transformed cross-sectional version of the time series.
 
-3. Foundation Model — TimeGPT (Nixtla)
+### 3. Foundation Model — `TimeGPT` (Nixtla)
+
+Model Implemented: `TimeGPT`
 
 * TimeGPT was the **strongest** performing model.
 
@@ -122,26 +123,32 @@ Model Implemented: LightGBM Regressor
 
 * Requires no manual feature engineering
 
-*TimeGPT cross-validation:*
+4. Deep Learning Models — (NeuralForecast)
 
-* nixtla_client.cross_validation(..., n_windows=5)
+* `AutoNBEATS`
+
+A deep learning model based on fully connected neural networks that uses backward and forward stacks to model trend, seasonality, and overall generic patterns. One of the reasons it would be used is because it learns patterns and trends directly from the data without any manipulation needing to take place. Along with this, it's best for medium to long-term horizons, which is what we were dealing with in this scenario.
+
+* `AutoNHITS`
+
+This was actually a successor to the `NBEATS` model and is meant to be an improvement on it. It's widely considered to be one of the more accurate models at forecasting, and has placed very high in competitions in that field. The improvements were to its ability forecast from longer horizons than `NBEATS`.
 
 
-Evaluation showed TimeGPT consistently achieved the lowest MAE and RMSE for the majority of hotels.
+### Evaluation showed `TimeGPT` consistently achieved the lowest MAE and RMSE for the majority of hotels.
 
-Model Comparison & Selection
+**Model Comparison & Selection**
 Metrics:
 
-* ME
+* `ME`
 
-* RMSE
+* `RMSE`
 
-* MAPE (used in original evaluation, but realized it may be misleading)
+* `MAPE` (used in original evaluation, but realized it may be misleading)
 
 *Counted “wins”*
 
 For each hotel and each metric, the model with the lowest error was recorded.
-TimeGPT won most hotels across both RMSE and MAE.
+TimeGPT won most hotels across both `RMSE` and `MAE`.
 
 Final Selected Model: `TimeGPT`
 
