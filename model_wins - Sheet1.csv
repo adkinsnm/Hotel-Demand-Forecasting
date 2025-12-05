@@ -1,0 +1,9 @@
+Model Name,Wins
+Naive,3
+SeasonalNaive,1
+AutoETS,0
+AutoARIMA,1
+LightGBM,3
+TimeGPT,25
+AutoNBEATS,3
+AutoNHITS,0
