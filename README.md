@@ -180,17 +180,17 @@ For each of the 17 hotels, the following were plotted:
 
 
 
-**Saved Outputs**
+### **Saved Outputs**
 
 The following files were exported as CSV:
 
-final_eval_table.csv
+`final_eval_table.csv`
 
-final_forecasting_table.csv
+`final_forecasting_table.csv`
 
-final_testing_output.csv
+`final_testing_output.csv`
 
-**What I Learned:**
+### **What I Learned:**
 
 * How to design a full forecasting pipeline
 
@@ -202,15 +202,15 @@ Unlike normal CV, it respects temporal order and avoids leakage.
 
 * How statistical, ML, DL, and AI foundation models differ
 
-Naive/SeasonalNaive: yes
+`Naive/SeasonalNaive:` classical baseline and easy to use
 
-AutoETS/AutoARIMA: fast, classical baselines
+`AutoETS/AutoARIMA:` fast, classical baselines
 
-LightGBM (MLForecast): needs feature engineering + lag structure
+`LightGBM (MLForecast):` needs feature engineering + lag structure
 
-TimeGPT: massively pretrained → strong generalization
+`TimeGPT:` massively pretrained → strong generalization
 
-**Why TimeGPT performed best**
+### **Why TimeGPT performed best**
 
 This model was by far the most accurate, putting the others to shame on how many times it had the best evaluation metrics. 
 The reason it performed so much better was its ability to adapt to each hotel and series. 
@@ -223,11 +223,11 @@ The reason it performed so much better was its ability to adapt to each hotel an
 
 * Merging actuals and forecasts for evaluation
 
-* Understanding neuralforecast APIs
+* Understanding `neuralforecast` APIs
 
 * Making changes to data to fit different models
 
 **Final Summary**
 
 This project demonstrates a full forecasting workflow using multiple modeling paradigms.
-After evaluating all models under identical conditions, TimeGP due to its superior error performance and visual alignment with actual demand.
+After evaluating all models under identical conditions, `TimeGPT` was evidently the best one to use due to its superior error performance and visual alignment with actual demand. A few other models were close, but none had the consistency that `TimeGPT` had
